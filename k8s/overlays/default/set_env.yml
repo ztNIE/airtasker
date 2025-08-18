@@ -1,0 +1,6 @@
+# ---
+# - op: replace
+#   path: "/spec/template/spec/containers/0/env/0"
+#   value:
+#     name: APP_NAME
+#     value: "overwritten"

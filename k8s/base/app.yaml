@@ -1,16 +1,8 @@
-# Namespace
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: airtasker-chris
-
----
 # Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: airtasker
-  namespace: airtasker-chris
   labels:
     app: airtasker
 spec:
@@ -26,6 +18,9 @@ spec:
       containers:
       - name: airtasker
         image: ztnie/airtasker-demo
+        env:
+          - name: APP_NAME
+            value: "airtasker"
         ports:
         - containerPort: 8080
         resources:
@@ -42,7 +37,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: airtasker-service
-  namespace: airtasker-chris
   labels:
     app: airtasker
 spec:
