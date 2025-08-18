@@ -6,6 +6,7 @@ namePrefix: default-
 
 resources:
 - ../../base
+- namespace.yml
 
 patches:
   - path: set_env.yml

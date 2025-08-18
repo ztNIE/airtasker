@@ -5,9 +5,6 @@
 ### Deploy with Default Settings
 
 ```bash
-# Create the namespace first
-kubectl create ns airtasker-chris-default
-
 # Apply the default overlay
 kubectl apply -k overlays/default
 
