@@ -3,3 +3,9 @@ nameReference:
     fieldSpecs:
       - kind: IngressRoute
         path: spec/routes/services/name
+---
+nameReference:
+  - kind: Deployment
+    fieldSpecs:
+      - kind: HorizontalPodAutoscaler
+        path: spec/scaleTargetRef/name

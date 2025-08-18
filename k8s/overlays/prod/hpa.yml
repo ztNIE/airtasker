@@ -1,0 +1,29 @@
+apiVersion: v1
+items:
+- apiVersion: autoscaling/v2
+  kind: HorizontalPodAutoscaler
+  metadata:
+    name: airtasker-hpa
+  spec:
+    maxReplicas: 5
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 85
+          type: Utilization
+      type: Resource
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 85
+    minReplicas: 2
+    scaleTargetRef:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: airtasker
+kind: List
+metadata:
+  resourceVersion: ""

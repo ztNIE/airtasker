@@ -11,6 +11,7 @@ resources:
 - ../../base
 - traefik_ingress.yml
 - namespace.yml
+- hpa.yml
 
 patches:
   - target:
@@ -20,3 +21,9 @@ patches:
       - op: replace
         path: /spec/type
         value: ClusterIP
+  - target:
+      kind: Deployment
+      name: airtasker
+    patch: |-
+      - op: remove
+        path: /spec/replicas
