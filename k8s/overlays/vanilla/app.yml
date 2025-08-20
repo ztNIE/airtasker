@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: airtasker-chris-default
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: airtasker
+  name: default-airtasker-service
+  namespace: airtasker-chris-default
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: airtasker
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: airtasker
+  name: default-airtasker
+  namespace: airtasker-chris-default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: airtasker
+  template:
+    metadata:
+      labels:
+        app: airtasker
+    spec:
+      containers:
+      - env:
+        - name: APP_NAME
+          value: airtasker
+        image: ztnie/airtasker-demo
+        livenessProbe:
+          httpGet:
+            path: /_health
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        name: airtasker
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /_health
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
