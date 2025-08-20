@@ -1,5 +1,11 @@
 # Kubernetes Configuration for Deploying airtasker-demo App
 
+## Cluster Setup
+
+1. Install k3s https://docs.k3s.io/installation with default settings.  
+By default k3s has traefik installed as ingress controller and Service LB as load balancer.  
+2. (Optional) Install cert-manager and configure ClusterIssuer with proper secrets
+
 ## Usage
 
 ### Deploy with Default Settings
