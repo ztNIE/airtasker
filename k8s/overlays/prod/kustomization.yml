@@ -27,3 +27,7 @@ patches:
     patch: |-
       - op: remove
         path: /spec/replicas
+  - path: set_env.yml
+    target:
+      kind: Deployment
+      name: airtasker
